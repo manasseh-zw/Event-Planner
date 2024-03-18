@@ -1,16 +1,17 @@
 using EventPlanner.Server.Data.Repository;
+using EventPlanner.Server.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<RepositoryContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureCors();
+builder.Services.ConfigurePostgresContext(builder.Configuration);
+builder.Services.ConfigureAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
