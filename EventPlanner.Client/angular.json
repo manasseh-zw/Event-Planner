@@ -35,6 +35,8 @@
               "src/assets"
             ],
             "styles": [
+              "src/core.css",
+              "src/sneat-theme.css",
               "src/styles.css"
             ],
             "scripts": []
